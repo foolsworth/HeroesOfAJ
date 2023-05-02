@@ -15,7 +15,7 @@ Instructions:
 - Items can be dragged from the inventory into the right or left equipment slot at the bottom right or to any empty inventory slot.
 - Items can be discarded by dragging them to the slot with the trash symbol.
 - The number of slots in the inventory are customizable in the inventory prefab.
-- Once a item is equiped the player stats are updated and the weapon appears in the corresponding hand.
+- Once an item is equiped the player stats are updated and the weapon appears in the corresponding hand.
 - Detailed stats can be seen if the stat bar in the bottom left of the screen is hovered over.
 - Detailed stats will show the character stats as well as the stats modified by the currently equiped items.
 
