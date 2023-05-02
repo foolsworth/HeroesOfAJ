@@ -21,10 +21,13 @@ Instructions:
 
 To create a character with stats:
 - A prefab copy of the Hero prefab should be made.
-- In the root object it has a stats container component. Stats can be browsed and added in the inspector. Also new attributes can be added throught the field at the very bottom.
+- In the root object it has a stats container component. 
+- Stats can be browsed and added in the inspector. 
+- Custom attributes can also be added through the field at the very bottom.
 - All attributes are stored in a scriptable object.
 
 To create an item:
 - Access the scriptable object Assets/Data/ItemCompendium.
 - Fill the form and press add item to add a new item to the library.
-- YOu can set the item name, description, UI icon, mesh and stats here. It uses the same stat creation system as the stats container on the hero.
+- You can set the item name, description, UI icon, mesh and stats here. 
+- It uses the same stat creation system as the stats container on the hero.
