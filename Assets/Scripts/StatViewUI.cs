@@ -47,7 +47,7 @@ public class StatViewUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             {
                 if (processedAttributes.Contains(stat.GetType()))
                 {
-                    return;
+                    continue;
                 }
 
                 var UIItem = _StatIndex < _DetailedStats.Count

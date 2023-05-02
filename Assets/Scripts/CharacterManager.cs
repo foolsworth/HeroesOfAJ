@@ -79,7 +79,7 @@ namespace DefaultNamespace
             }
         }
 
-        public void UpdateRealtimeStats()
+        private void UpdateRealtimeStats()
         {
             //Update bar stats
             if (_HealthBar != null)

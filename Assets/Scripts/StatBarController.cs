@@ -46,7 +46,7 @@ public class StatBarController : MonoBehaviour
 public class RealtimeStat
 {
     [Title("$_Name")]
-    [ProgressBar(0, "_MaxValue"), SerializeField]private float _CurrentValue;
+    [ProgressBar(0, "_MaxValue"), SerializeField, ReadOnly]private float _CurrentValue;
 
     private bool _Initialized;
     private float _MaxValue;
@@ -61,6 +61,10 @@ public class RealtimeStat
     public void UpdateValues(float maxValue, string name = "")
     {
         _MaxValue = maxValue;
+        if (_CurrentValue > _MaxValue)
+        {
+            _CurrentValue = MaxValue;
+        }
         if (!_Initialized)
         {
             _Initialized = true;
