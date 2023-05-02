@@ -42,6 +42,7 @@ namespace DefaultNamespace
         {
             UpdateStatModifiers();
             UpdateRealtimeStats();
+            UpdateEquippedMeshes();
             if (_StatView != null)
             {
                 var rhStats = _Inventory.EquippedSlots[0].ItemInSlot == null
@@ -52,6 +53,26 @@ namespace DefaultNamespace
                     : _Inventory.EquippedSlots[1].ItemInSlot.ItemStats;
                 
                 _StatView.UpdateDetailedStats(_StatsContainer.Stats, lhStats, rhStats);
+            }
+        }
+
+        private void UpdateEquippedMeshes()
+        {
+            for (int i = 0; i < _Hands.Count; i++)
+            {
+                var hand = _Hands[i];
+                foreach (Transform child in hand)
+                {
+                    Destroy(child.gameObject);
+                }
+
+                var itemInSlot = _Inventory.EquippedSlots[i].ItemInSlot;
+                if (itemInSlot != null)
+                {
+                    var mesh = Instantiate(itemInSlot.ItemData.MeshPrefab, hand);
+                    mesh.transform.localPosition = Vector3.zero;
+                    mesh.transform.localRotation = Quaternion.identity;
+                }
             }
         }
 
