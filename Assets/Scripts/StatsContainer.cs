@@ -2,25 +2,32 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sirenix.OdinInspector;
-using Sirenix.OdinInspector.Editor.Drawers;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class StatsContainer : MonoBehaviour
 {
-    [SerializeField, ListDrawerSettings(HideAddButton = true)]
+    public Stats Stats;
+}
+
+[Serializable]
+public class Stats 
+{
+    [FormerlySerializedAs("StatList")] [SerializeField, ListDrawerSettings(HideAddButton = true)]
     private List<StatAttribute> _StatList = new List<StatAttribute>();
 
     [Header("Add Stat"), InfoBox("$_AddErrorMessage", InfoMessageType.Error, "_AddError"), PropertyOrder(0)]
-    [ValueDropdown("GetAllAttributes"), SerializeField] private string _Attribute;
+    [ValueDropdown("GetAllAttributes"), SerializeField] private String _Attribute;
 
     [SerializeField, PropertyOrder(1)] private float _Value;
 
-    private string _AddErrorMessage = "";
-    private string _NewAttributeErrorMessage = "";
+    private String _AddErrorMessage = "";
+    private String _NewAttributeErrorMessage = "";
     private bool _AddError;
     private bool _NewAttributeError;
     
-    private List<string> GetAllAttributes => StatAttributes.instance.AllAttributes;
+    private List<String> GetAllAttributes => StatAttributes.Instance.AllAttributes;
+    public List<StatAttribute> StatList => _StatList;
 
     [Button("Add"), PropertyOrder(2)]
     private void AddAttribute()
@@ -43,7 +50,7 @@ public class StatsContainer : MonoBehaviour
     }
 
     [Header("Add new attribute"), InfoBox("$_NewAttributeErrorMessage", InfoMessageType.Error, "_NewAttributeError"), PropertyOrder(3)]
-    [SerializeField] private string _AttributeName;
+    [SerializeField] private String _AttributeName;
 
     [Button("Add to attribute list"), PropertyOrder(4)]
     private void AddNewAttribute()
@@ -53,7 +60,7 @@ public class StatsContainer : MonoBehaviour
             _NewAttributeErrorMessage = "Attribute cannot be nameless.";
             _NewAttributeError = true;
         }
-        else if (!StatAttributes.instance.AddAttribute(_AttributeName))
+        else if (!StatAttributes.Instance.AddAttribute(_AttributeName))
         {
             _NewAttributeErrorMessage = "Attribute name is a duplicate.";
             _NewAttributeError = true;
@@ -64,6 +71,20 @@ public class StatsContainer : MonoBehaviour
             _NewAttributeError = false;
         }
     }
+
+    public StatAttribute GetStat(string attribute)
+    {
+        foreach (var stat in _StatList)
+        {
+            if (stat.GetType() == attribute)
+            {
+                return stat;
+            }   
+        }
+
+        return null;
+    }
+    
 }
 
 [Serializable]
@@ -73,19 +94,33 @@ public class StatAttribute
     [SerializeField] private float _Value;
     
     [SerializeField, HideInInspector] private int _Type;
-    public float Value => _Value;
-    
-    public StatAttribute( string type, float value)
+
+    public float Value
     {
-        _Type = StatAttributes.instance.AllAttributes.IndexOf(type);
+        get => _Value;
+        set
+        {
+            _Value = value;
+        }
+    }
+    public int Type => _Type;
+    
+    public StatAttribute( String type, float value)
+    {
+        _Type = StatAttributes.Instance.AllAttributes.IndexOf(type);
         _Value = value;
     }
 
-    public string GetType()
+    public String GetType()
     {
-        if (_Type >= 0 && _Type < StatAttributes.instance.AllAttributes.Count())
+        if (StatAttributes.Instance == null)
         {
-            return StatAttributes.instance.AllAttributes[_Type];
+            return "";
+        }
+        
+        if (_Type >= 0 && _Type < StatAttributes.Instance.AllAttributes.Count())
+        {
+            return StatAttributes.Instance.AllAttributes[_Type];
         }
         else
         {

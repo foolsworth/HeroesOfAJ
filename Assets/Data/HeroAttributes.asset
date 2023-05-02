@@ -15,7 +15,10 @@ MonoBehaviour:
   AllAttributes:
   - Health
   - Mana
-  - Endurance
+  - Stamina
   - Intelligence
-  - JumpHeight
+  - Strength
+  - Speed
+  - Damage
+  - Durability
   _NewAttribute: 

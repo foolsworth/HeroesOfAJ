@@ -2,17 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sirenix.OdinInspector;
-using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu (menuName = "HeroesOfAJ/HeroAttributes", fileName = "HeroAttributes")]
 public class StatAttributes : ScriptableSingleton<StatAttributes>
 {
-    [ListDrawerSettings(HideAddButton = true), ValidateInput("ValidateChange", "$_ChangeMessage", InfoMessageType.Error)] public List<string> AllAttributes = new List<string>();
+    [ListDrawerSettings(HideAddButton = true), ValidateInput("ValidateChange", "$_ChangeMessage", InfoMessageType.Error)] 
+    public List<String> AllAttributes;
     [SerializeField, InfoBox("$_ErrorMessage", InfoMessageType.Error, "_Error")] private string _NewAttribute;
     
-    private string _ChangeMessage = "";
-    private string _ErrorMessage = "";
+    private String _ChangeMessage = "";
+    private String _ErrorMessage = "";
     private bool _Error;
     
     
@@ -52,7 +52,7 @@ public class StatAttributes : ScriptableSingleton<StatAttributes>
         return false;
     }
     
-    public bool AddAttribute(string attributeName)
+    public bool AddAttribute(String attributeName)
     {
         if (!AllAttributes.Contains(attributeName))
         {
