@@ -37,7 +37,7 @@ public class Inventory : MonoBehaviour
 
         return null;
     }
-    
+
     public InventorySlot GetClosestSlot(Vector3 position)
     {
         var allSlots = new List<InventorySlot>();
@@ -46,7 +46,7 @@ public class Inventory : MonoBehaviour
         allSlots.Add(_DiscardSlot);
 
         var closestSlot = 0;
-        
+
         for (int i = 0; i < allSlots.Count; i++)
         {
             var slot = allSlots[i];
@@ -59,32 +59,31 @@ public class Inventory : MonoBehaviour
 
         return allSlots[closestSlot];
     }
-    
+
     public bool TryAddItem(CollectableItem item)
     {
-        foreach (var slot in _StorageSlots)
+        var nextAvailableSlot = GetNextAvailableSlot();
+        if (nextAvailableSlot != null)
         {
-            if (!slot.Occupied)
-            {
-                var itemScreenPos = item.transform.position;
-                var uiItem = Instantiate(_UIItemPrefab, slot.transform, false);
-                uiItem.transform.position = itemScreenPos;
-                uiItem.transform.localRotation = Quaternion.identity;
-                uiItem.SetItem(item, this, slot);
-                slot.SetSlotItem(uiItem);
-                return true;
-            }
+            var itemScreenPos = item.transform.position;
+            var uiItem = Instantiate(_UIItemPrefab, nextAvailableSlot.transform, false);
+            var uiItemTransform = uiItem.transform;
+            uiItemTransform.position = itemScreenPos;
+            uiItemTransform.localRotation = Quaternion.identity;
+            uiItem.SetItem(item, this, nextAvailableSlot);
+            nextAvailableSlot.SetSlotItem(uiItem);
+            return true;
         }
 
         return false;
     }
-    
+
     public void AddSlots(int amount)
     {
-        _SlotCount +=  Math.Clamp(amount, 0, _MaxSlotCount - _SlotCount);
+        _SlotCount += Math.Clamp(amount, 0, _MaxSlotCount - _SlotCount);
         UpdateSlots();
     }
-    
+
     public void RemoveSlots(int amount = 0)
     {
         _SlotCount -= Math.Clamp(amount == 0 ? _SlotCount : 0, 0, _SlotCount);
@@ -98,13 +97,14 @@ public class Inventory : MonoBehaviour
             Debug.LogError("Slot Prefab not set");
             return;
         }
+
         var slotsMissing = _SlotCount - _StorageSlots.Count();
 
         if (slotsMissing == 0)
         {
             return;
         }
-        
+
         if (slotsMissing < 0)
         {
             var slotsToRemove = Math.Abs(slotsMissing);
@@ -115,7 +115,8 @@ public class Inventory : MonoBehaviour
                 Destroy(slot.gameObject);
                 _StorageSlots.Remove(slot);
             }
-        }else
+        }
+        else
         {
             for (int i = 0; i < slotsMissing; i++)
             {

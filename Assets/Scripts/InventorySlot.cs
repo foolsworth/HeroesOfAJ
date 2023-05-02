@@ -12,14 +12,16 @@ public class InventorySlot : MonoBehaviour
     {
         _ItemInSlot.SetInteractable(true);
     }
-    
+
     protected virtual void OnItemSet()
     {
         _ItemInSlot.SetInteractable(false);
     }
-    
-    protected virtual void OnItemUnSet() { }
-    
+
+    protected virtual void OnItemUnSet()
+    {
+    }
+
     public void SetSlotItem(UIItem item)
     {
         _ItemInSlot = item;
@@ -39,23 +41,23 @@ public class InventorySlot : MonoBehaviour
         if (_ItemInSlot != null)
         {
             Destroy(_ItemInSlot.gameObject);
-            _ItemInSlot = null;   
+            _ItemInSlot = null;
         }
     }
-    
+
     private IEnumerator LerpUIItem(UIItem item)
     {
         //Determine position of item
         var targetPosition = Vector3.zero;
         var itemTransform = item.transform;
-        
+
         //Lerp item position and scale
         while (Vector3.Distance(item.transform.localPosition, targetPosition) > 5f)
         {
-            itemTransform.localPosition = Vector3.Lerp(itemTransform.localPosition, targetPosition, Time.deltaTime * 5); 
+            itemTransform.localPosition = Vector3.Lerp(itemTransform.localPosition, targetPosition, Time.deltaTime * 5);
             yield return null;
         }
-        
+
         itemTransform.localPosition = targetPosition;
         OnItemSettled();
     }

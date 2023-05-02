@@ -24,6 +24,7 @@ namespace DefaultNamespace
         {
             yield return new WaitUntil(() => _Inventory.EquippedSlots != null && _Inventory.EquippedSlots.Count == 2);
             UpdateStats();
+            //Add listener to trigger when items are equipped
             foreach (var slot in _Inventory.EquippedSlots)
             {
                 slot.EquipmentChanged.AddListener(UpdateStats);
@@ -40,6 +41,7 @@ namespace DefaultNamespace
 
         private void UpdateStats()
         {
+            //If stats changed update ui and meshes
             UpdateStatModifiers();
             UpdateRealtimeStats();
             UpdateEquippedMeshes();
@@ -58,6 +60,7 @@ namespace DefaultNamespace
 
         private void UpdateEquippedMeshes()
         {
+            //Delete unused and spawn new weapons
             for (int i = 0; i < _Hands.Count; i++)
             {
                 var hand = _Hands[i];
@@ -78,6 +81,7 @@ namespace DefaultNamespace
 
         public void UpdateRealtimeStats()
         {
+            //Update bar stats
             if (_HealthBar != null)
             {
                 _HealthBar.RealtimeStat.UpdateValues(GetModifiedStat("Health"), "Health");
@@ -94,7 +98,7 @@ namespace DefaultNamespace
             }
         }
 
-        public void UpdateStatModifiers()
+        private void UpdateStatModifiers()
         {
             _StatsModifiers = new Stats();
             for (int i = 0; i < _Inventory.EquippedSlots.Count; i++)
@@ -127,12 +131,7 @@ namespace DefaultNamespace
                 }
             }
         }
-
-        public void UpdateBaseStats()
-        {
-            
-        }
-
+        
         public float GetModifiedStat(string attribute)
         {
             foreach (var stat in _StatsContainer.Stats.StatList)
@@ -146,9 +145,7 @@ namespace DefaultNamespace
 
             return 0f;
         }
-        
-        
-        
+
         public void PickupItem(CollectableItem item)
         {
             //Transfer item data and create ui
