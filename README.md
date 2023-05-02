@@ -4,9 +4,9 @@ A challenge provided by Monadical
 Hello And thanks for reviewing my entry for the monadical programming challenge
 
 My project contains the following:
-- A basic attribute tracking system
-- A basic hero creation system with customizable stats
-- An inventory system for creation spawning and equipping stat altering equipment
+- A basic attribute tracking system.
+- A basic hero creation system with customizable stats.
+- An inventory system for creation, spawning and equipping stat altering equipment.
 
 Instructions:
 - When you run the project, your hero is the grey sphere.
