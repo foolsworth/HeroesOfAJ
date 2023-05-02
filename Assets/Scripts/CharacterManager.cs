@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Sirenix.OdinInspector;
@@ -13,15 +14,66 @@ namespace DefaultNamespace
         [SerializeField] private Inventory _Inventory;
         [SerializeField] private List<Transform> _Hands;
 
-        private float _CurrentHealth;
+        [SerializeField] private StatBarController _HealthBar;
+        [SerializeField] private StatBarController _ManaBar;
+        [SerializeField] private StatBarController _StaminaBar;
 
-        private void Start()
+        [SerializeField] private StatViewUI _StatView;
+
+        private IEnumerator Start()
         {
+            yield return new WaitUntil(() => _Inventory.EquippedSlots != null && _Inventory.EquippedSlots.Count == 2);
             UpdateStats();
-            _CurrentHealth = GetStat("Health");
+            foreach (var slot in _Inventory.EquippedSlots)
+            {
+                slot.EquipmentChanged.AddListener(UpdateStats);
+            }
         }
 
-        public void UpdateStats()
+        private void OnDestroy()
+        {
+            foreach (var slot in _Inventory.EquippedSlots)
+            {
+                slot.EquipmentChanged.RemoveListener(UpdateStats);
+            }
+        }
+
+        private void UpdateStats()
+        {
+            UpdateStatModifiers();
+            UpdateRealtimeStats();
+            if (_StatView != null)
+            {
+                var rhStats = _Inventory.EquippedSlots[0].ItemInSlot == null
+                    ? null
+                    : _Inventory.EquippedSlots[0].ItemInSlot.ItemStats;
+                var lhStats = _Inventory.EquippedSlots[1].ItemInSlot == null
+                    ? null
+                    : _Inventory.EquippedSlots[1].ItemInSlot.ItemStats;
+                
+                _StatView.UpdateDetailedStats(_StatsContainer.Stats, lhStats, rhStats);
+            }
+        }
+
+        public void UpdateRealtimeStats()
+        {
+            if (_HealthBar != null)
+            {
+                _HealthBar.RealtimeStat.UpdateValues(GetModifiedStat("Health"), "Health");
+            }
+
+            if (_ManaBar != null)
+            {
+                _ManaBar.RealtimeStat.UpdateValues(GetModifiedStat("Mana"), "Mana");
+            }
+
+            if (_StaminaBar != null)
+            {
+                _StaminaBar.RealtimeStat.UpdateValues(GetModifiedStat("Stamina"), "Stamina");
+            }
+        }
+
+        public void UpdateStatModifiers()
         {
             _StatsModifiers = new Stats();
             for (int i = 0; i < _Inventory.EquippedSlots.Count; i++)
@@ -55,7 +107,12 @@ namespace DefaultNamespace
             }
         }
 
-        public float GetStat(string attribute)
+        public void UpdateBaseStats()
+        {
+            
+        }
+
+        public float GetModifiedStat(string attribute)
         {
             foreach (var stat in _StatsContainer.Stats.StatList)
             {
@@ -68,6 +125,8 @@ namespace DefaultNamespace
 
             return 0f;
         }
+        
+        
         
         public void PickupItem(CollectableItem item)
         {

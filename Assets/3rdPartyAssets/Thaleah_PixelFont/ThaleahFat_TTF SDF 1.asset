@@ -67,7 +67,7 @@ Material:
     - _OutlineSoftness: 0
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
-    - _OutlineWidth: 0
+    - _OutlineWidth: 0.63
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
     - _ScaleRatioA: 0.8333333
@@ -115,11 +115,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: ThaleahFat_TTF SDF
+  m_Name: ThaleahFat_TTF SDF 1
   m_EditorClassIdentifier: 
-  hashCode: -1830451546
+  hashCode: -496909257
   material: {fileID: -4405675258227943653}
-  materialHashCode: -974045242
+  materialHashCode: 1813707447
   m_Version: 1.1.0
   m_SourceFontFileGUID: 585188cdc4600544eb408bee749e4b3a
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 585188cdc4600544eb408bee749e4b3a, type: 3}

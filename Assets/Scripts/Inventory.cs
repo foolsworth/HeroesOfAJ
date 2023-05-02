@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -12,15 +11,17 @@ public class Inventory : MonoBehaviour
     [SerializeField] private int _SlotCount = 15;
     [SerializeField] private int _MaxSlotCount = 32;
     [SerializeField] private UIItem _UIItemPrefab;
+    [SerializeField] private InventorySlot _DiscardSlot;
 
-    public List<InventorySlot> EquippedSlots = new List<InventorySlot>();
+    private List<InventorySlotEquipped> _EquippedSlots = new List<InventorySlotEquipped>();
     private List<InventorySlot> _StorageSlots = new List<InventorySlot>();
-    private InventorySlot _DiscardSlot;
+
+    public List<InventorySlotEquipped> EquippedSlots => _EquippedSlots;
 
     private void Start()
     {
         _StorageSlots = _Storage.GetComponentsInChildren<InventorySlot>().ToList();
-        EquippedSlots = _Equipped.GetComponentsInChildren<InventorySlot>().ToList();
+        _EquippedSlots = _Equipped.GetComponentsInChildren<InventorySlotEquipped>().ToList();
         UpdateSlots();
     }
 
@@ -36,11 +37,11 @@ public class Inventory : MonoBehaviour
 
         return null;
     }
-
+    
     public InventorySlot GetClosestSlot(Vector3 position)
     {
         var allSlots = new List<InventorySlot>();
-        allSlots.AddRange(EquippedSlots);
+        allSlots.AddRange(_EquippedSlots);
         allSlots.AddRange(_StorageSlots);
         allSlots.Add(_DiscardSlot);
 
@@ -111,7 +112,7 @@ public class Inventory : MonoBehaviour
             {
                 var slot = _StorageSlots[^1];
                 slot.DiscardItem();
-                Destroy(slot);
+                Destroy(slot.gameObject);
                 _StorageSlots.Remove(slot);
             }
         }else

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 1593296598377438790}
-  - component: {fileID: 8832164216349751826}
+  - component: {fileID: 963194231}
   m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -112,7 +112,7 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &8832164216349751826
+--- !u!114 &963194231
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,14 +121,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Script: {fileID: 11500000, guid: 56666c5a40171f54783dd416a44f42bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
+  m_EventMask:
     serializedVersion: 2
-    m_Bits: 127
+    m_Bits: 4294967295
+  m_MaxRayIntersections: 0
 --- !u!1 &1302611547
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,6 +343,10 @@ MonoBehaviour:
   _Hands:
   - {fileID: 1302611548}
   - {fileID: 1820228224}
+  _HealthBar: {fileID: 0}
+  _ManaBar: {fileID: 0}
+  _StaminaBar: {fileID: 0}
+  _StatView: {fileID: 0}
 --- !u!1 &5180726904700234629
 GameObject:
   m_ObjectHideFlags: 0

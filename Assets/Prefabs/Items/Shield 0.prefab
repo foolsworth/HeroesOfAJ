@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7852705594110970972}
-  - component: {fileID: 4360539230176699791}
-  - component: {fileID: 2036393076886048910}
   m_Layer: 0
   m_Name: Shield 0
   m_TagString: Untagged
@@ -34,40 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4360539230176699791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6805101327022083931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04f0c9f9dcaf99949bf506915231048b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2036393076886048910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6805101327022083931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 961dd71eaf005704e89e4f57ef789132, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _StatList:
-  - _Value: 5
-    _Type: 5
-  - _Value: 5
-    _Type: 6
-  - _Value: -5
-    _Type: 2
-  _Attribute: Stamina
-  _Value: -5
-  _AttributeName: 
 --- !u!1001 &6356181430228475612
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -29,7 +29,8 @@ public class InventoryItemData
     [SerializeField, Multiline(5)] private string _Description;
     [SerializeField] private Sprite _UIIcon;
     [SerializeField] private GameObject _MeshPrefab;
-    
+    [SerializeField] private Stats _Stats;
+
     private bool _Error;
     private string _ErrorMessage;
 
@@ -37,6 +38,7 @@ public class InventoryItemData
     public string Description => _Description;
     public Sprite UIIcon => _UIIcon;
     public GameObject MeshPrefab => _MeshPrefab;
+    public Stats Stats => _Stats;
 
     private void CheckForDuplicateName()
     {

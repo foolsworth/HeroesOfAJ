@@ -5,16 +5,13 @@ using UnityEngine;
 
 public class CollectableItem : MonoBehaviour
 {
-
-    [SerializeField] protected StatsContainer _StatsContainer;
-    [SerializeField] protected SpriteRenderer _Icon;
+    [SerializeField] private SpriteRenderer _Icon;
     [SerializeField, ValueDropdown("GetAllItems"), OnValueChanged("SetItemData")] private int _Item;
-    protected Collider _Collider;
     [SerializeField, ReadOnly] protected InventoryItemData _ItemData;
     
     public InventoryItemData ItemData =>  _ItemData;
-    public StatsContainer StatsContainer => _StatsContainer;
-    
+    protected Collider _Collider;
+
     private ValueDropdownList<int> GetAllItems()
     {
         var dropdownList = new ValueDropdownList<int>();
@@ -52,10 +49,6 @@ public class CollectableItem : MonoBehaviour
 
     private void Start()
     {
-        if (TryGetComponent<StatsContainer>(out var statsContainer))
-        {
-            _StatsContainer = statsContainer;
-        }
         if (TryGetComponent<Collider>(out var collider))
         {
             _Collider = collider;

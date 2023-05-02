@@ -7,13 +7,30 @@ public class InventorySlot : MonoBehaviour
 
     public bool Occupied => _ItemInSlot != null;
     public UIItem ItemInSlot => _ItemInSlot;
+
+    protected virtual void OnItemSettled()
+    {
+        _ItemInSlot.SetInteractable(true);
+    }
+    
+    protected virtual void OnItemSet()
+    {
+        _ItemInSlot.SetInteractable(false);
+    }
+    
+    protected virtual void OnItemUnSet() { }
     
     public void SetSlotItem(UIItem item)
     {
         _ItemInSlot = item;
         if (_ItemInSlot != null)
         {
+            OnItemSet();
             StartCoroutine(LerpUIItem(item));
+        }
+        else
+        {
+            OnItemUnSet();
         }
     }
 
@@ -28,7 +45,6 @@ public class InventorySlot : MonoBehaviour
     
     private IEnumerator LerpUIItem(UIItem item)
     {
-        item.SetInteractable(false);
         //Determine position of item
         var targetPosition = Vector3.zero;
         var itemTransform = item.transform;
@@ -41,6 +57,6 @@ public class InventorySlot : MonoBehaviour
         }
         
         itemTransform.localPosition = targetPosition;
-        item.SetInteractable(true);
+        OnItemSettled();
     }
 }

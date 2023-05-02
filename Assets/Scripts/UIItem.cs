@@ -11,6 +11,7 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, ID
     [SerializeField, ReadOnly] private Stats _ItemStats;
     
     public Stats ItemStats => _ItemStats;
+    public InventoryItemData ItemData => _ItemData;
 
     private Inventory _Inventory;
     private InventorySlot _Slot;
@@ -28,7 +29,7 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, ID
         _ItemData = collectableItem.ItemData;
         _ItemStats = new Stats();
         _Icon.sprite = _ItemData.UIIcon;
-        foreach (var stat in collectableItem.StatsContainer.Stats.StatList)
+        foreach (var stat in _ItemData.Stats.StatList)
         {
             _ItemStats.StatList.Add(new StatAttribute(stat.GetType(), stat.Value));
         }

@@ -17,13 +17,40 @@ MonoBehaviour:
     _Description: A mundane axe with signs of wear from decades of disuse.
     _UIIcon: {fileID: 21300000, guid: d6fdd94fa87a60e46b496f8563ae26b1, type: 3}
     _MeshPrefab: {fileID: 7301904196472429899, guid: 339eec991b742cb46aa0676e7319a299, type: 3}
+    _Stats:
+      _StatList:
+      - _Value: 10
+        _Type: 6
+      - _Value: -3
+        _Type: 5
+      - _Value: 10
+        _Type: 0
+      _Attribute: Health
+      _Value: 10
+      _AttributeName: 
   - _Name: Rusty Buckler
     _Description: A small shield that has seen much better days. But something is
       better than nothing; or so they say.
     _UIIcon: {fileID: 21300000, guid: d5b67b511a1ac1f419c2d32c06771a52, type: 3}
     _MeshPrefab: {fileID: 6805101327022083931, guid: 1608973c18b60bc43b7317e74caf5524, type: 3}
+    _Stats:
+      _StatList:
+      - _Value: 10
+        _Type: 7
+      - _Value: -1
+        _Type: 5
+      - _Value: -5
+        _Type: 2
+      _Attribute: Stamina
+      _Value: -5
+      _AttributeName: 
   _InventoryItemData:
     _Name: 
     _Description: 
     _UIIcon: {fileID: 0}
     _MeshPrefab: {fileID: 0}
+    _Stats:
+      _StatList: []
+      _Attribute: 
+      _Value: 0
+      _AttributeName: 

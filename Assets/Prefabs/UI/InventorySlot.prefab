@@ -51,8 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ce927cf23fe645479347fd17ad5bf54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _TargetScale: {x: 0.1, y: 0.1, z: 0.1}
-  _DistanceFromUI: 1
 --- !u!222 &5791201133070655287
 CanvasRenderer:
   m_ObjectHideFlags: 0

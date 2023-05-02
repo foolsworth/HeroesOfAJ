@@ -147,14 +147,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04f0c9f9dcaf99949bf506915231048b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _StatsContainer: {fileID: 896986009169659114}
   _Icon: {fileID: 2776514774583846664}
   _Item: 0
   _ItemData:
     _Name: Tarnished Axe
     _Description: A mundane axe with signs of wear from decades of disuse.
-    _UIIcon: {fileID: 0}
+    _UIIcon: {fileID: 21300000, guid: d6fdd94fa87a60e46b496f8563ae26b1, type: 3}
     _MeshPrefab: {fileID: 7301904196472429899, guid: 339eec991b742cb46aa0676e7319a299, type: 3}
+    _Stats:
+      _StatList:
+      - _Value: 10
+        _Type: 6
+      - _Value: -3
+        _Type: 5
+      _Attribute: Speed
+      _Value: -3
+      _AttributeName: 
 --- !u!54 &830100248690421788
 Rigidbody:
   m_ObjectHideFlags: 0
