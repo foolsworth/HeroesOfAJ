@@ -103,7 +103,7 @@ public class StatViewUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             yield return new WaitForSeconds(_RevealDelay);
         }
 
-        for (int i = 0; i < _StatIndex; i++)
+        for (int i = 0; i < (show ? _StatIndex : _DetailedStats.Count); i++)
         {
             var detailedStat = _DetailedStats[show ? i : _StatIndex - 1 - i];
             if (detailedStat.gameObject.activeSelf == show)
