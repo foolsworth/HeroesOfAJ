@@ -154,5 +154,39 @@ namespace DefaultNamespace
                 Destroy(item.gameObject);   
             }
         }
+
+        private void Update()
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                if (Input.GetMouseButton(i) && _Inventory.EquippedSlots[i].Occupied)
+                {
+                    var item = _Inventory.EquippedSlots[i].ItemInSlot;
+                    if (item.ItemData.Consumable)
+                    {
+                        var modifiers = item.ItemStats;
+
+                        var bars = new List<RealtimeStat>()
+                        {
+                            _HealthBar.RealtimeStat,
+                            _ManaBar.RealtimeStat,
+                            _StaminaBar.RealtimeStat
+                        };
+                        
+                        foreach (var bar in bars)
+                        {
+                            var itemStat = item.ItemStats.GetStat(bar.Name);
+                            if (itemStat != null)
+                            {
+                                bar.Heal(itemStat.Value);
+                            }
+                        }   
+                        _Inventory.EquippedSlots[i].DiscardItem();
+                        UpdateEquippedMeshes();
+                    }
+                }    
+            }
+            
+        }
     }
 }

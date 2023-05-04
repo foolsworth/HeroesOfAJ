@@ -65,9 +65,5 @@ public class CollectableItem : MonoBehaviour
             hero.PickupItem(this);
         }
     }
-
-    protected virtual void ActivateItem()
-    {
-        //Add
-    }
+    
 }

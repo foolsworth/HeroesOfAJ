@@ -17,6 +17,7 @@ MonoBehaviour:
     _Description: A mundane axe with signs of wear from decades of disuse.
     _UIIcon: {fileID: 21300000, guid: d6fdd94fa87a60e46b496f8563ae26b1, type: 3}
     _MeshPrefab: {fileID: 7301904196472429899, guid: 339eec991b742cb46aa0676e7319a299, type: 3}
+    _Consumable: 0
     _Stats:
       _StatList:
       - _Value: 10
@@ -33,6 +34,7 @@ MonoBehaviour:
       better than nothing; or so they say.
     _UIIcon: {fileID: 21300000, guid: d5b67b511a1ac1f419c2d32c06771a52, type: 3}
     _MeshPrefab: {fileID: 6805101327022083931, guid: 1608973c18b60bc43b7317e74caf5524, type: 3}
+    _Consumable: 0
     _Stats:
       _StatList:
       - _Value: 10
@@ -44,11 +46,24 @@ MonoBehaviour:
       _Attribute: Stamina
       _Value: -5
       _AttributeName: 
+  - _Name: HealthPotion
+    _Description: 
+    _UIIcon: {fileID: 21300000, guid: 02800fb9cff14da47a04572790384d8b, type: 3}
+    _MeshPrefab: {fileID: 1207145758441076341, guid: c8f328ffdc9cd3646ab8b4c340edbbba, type: 3}
+    _Consumable: 1
+    _Stats:
+      _StatList:
+      - _Value: 5
+        _Type: 0
+      _Attribute: Health
+      _Value: 5
+      _AttributeName: 
   _InventoryItemData:
     _Name: 
     _Description: 
     _UIIcon: {fileID: 0}
     _MeshPrefab: {fileID: 0}
+    _Consumable: 0
     _Stats:
       _StatList: []
       _Attribute: 

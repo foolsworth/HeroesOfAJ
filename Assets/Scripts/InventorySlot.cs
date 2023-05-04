@@ -40,6 +40,7 @@ public class InventorySlot : MonoBehaviour
     {
         if (_ItemInSlot != null)
         {
+            StopAllCoroutines();
             Destroy(_ItemInSlot.gameObject);
             _ItemInSlot = null;
         }

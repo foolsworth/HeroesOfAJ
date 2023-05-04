@@ -75,4 +75,5 @@ public class UIItem : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, ID
         _Slot.SetSlotItem(null);
         transform.SetParent(transform.parent.parent.parent, true);
     }
+    
 }

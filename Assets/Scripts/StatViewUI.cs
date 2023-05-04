@@ -105,7 +105,7 @@ public class StatViewUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
         for (int i = 0; i < (show ? _StatIndex : _DetailedStats.Count); i++)
         {
-            var detailedStat = _DetailedStats[show ? i : _StatIndex - 1 - i];
+            var detailedStat = _DetailedStats[show ? i : _DetailedStats.Count - 1 - i];
             if (detailedStat.gameObject.activeSelf == show)
             {
                 continue;
